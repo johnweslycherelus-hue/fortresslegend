@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fortress Legend — Play-to-Earn DeFi RPG on Polygon</title>
+  <meta name="description" content="Fortress Legend ($FLG) — A sustainable Play-to-Earn DeFi RPG on Polygon PoS. Turn-based D&D combat, NFT heroes, Day-1 DAO. Launching Q2 2026.">
+  <meta name="keywords" content="Fortress Legend, FLG, Play to Earn, DeFi RPG, Polygon, blockchain gaming, NFT, GameFi, Web3">
+  <meta name="author" content="Vael — Fortress Legend">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Fortress Legend — $FLG on Polygon PoS">
+  <meta property="og:description" content="A sustainable, rug-proof blockchain RPG. No presale. No rug. Worth playing at $0.">
+  <meta property="og:url" content="https://fortresslegend.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@FortressLegendFLG">
+  <meta name="twitter:title" content="Fortress Legend — $FLG on Polygon PoS">
+  <meta name="twitter:description" content="A sustainable Play-to-Earn DeFi RPG. No presale. No rug. Worth playing at $0.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#7B2FBE;--purple2:#4A1280;--gold:#C9A22A;--gold2:#F0C84A;--dark:#06040F;--dark2:#0D0820;--dark3:#160D2E;--green:#1A9A6B;--red:#C0392B;--text:#E8DDF5;--muted:#8A7AAA;--border:rgba(123,47,190,0.25);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--text);font-family:'Crimson Text',Georgia,serif;font-size:18px;line-height:1.7;overflow-x:hidden;}
+#canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;}
+.bg-glow{position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(123,47,190,.18) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(26,154,107,.05) 0%,transparent 50%);pointer-events:none;z-index:0;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:16px 48px;background:rgba(6,4,15,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cinzel',serif;font-weight:900;font-size:16px;letter-spacing:.12em;background:linear-gradient(135deg,var(--gold),#fff8e0,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.15em;color:var(--muted);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--dark);background:linear-gradient(135deg,var(--gold2),var(--gold));border:none;padding:9px 20px;border-radius:4px;cursor:pointer;text-decoration:none;transition:all .2s;}
+.wrap{position:relative;z-index:2;}
+section{padding:100px 24px;position:relative;}
+.inner{max-width:1100px;margin:0 auto;}
+.section-tag{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.3em;color:var(--purple);margin-bottom:16px;display:block;}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(26px,3.5vw,42px);font-weight:700;color:#F0E8FF;margin-bottom:16px;line-height:1.15;}
+.section-title span{color:var(--gold);}
+.section-lead{font-size:18px;color:var(--muted);max-width:640px;line-height:1.75;margin-bottom:52px;}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 24px 80px;position:relative;}
+.hero-eyebrow{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.35em;color:var(--purple);margin-bottom:20px;opacity:0;animation:fadeUp .8s ease .2s forwards;}
+.hero-title{font-family:'Cinzel',serif;font-weight:900;font-size:clamp(48px,9vw,108px);line-height:.95;letter-spacing:-.01em;background:linear-gradient(160deg,#fff8e0 0%,var(--gold2) 30%,var(--gold) 60%,#8B5A00 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;opacity:0;animation:fadeUp .9s ease .4s forwards;}
+.hero-sub{font-family:'Cinzel',serif;font-size:clamp(13px,2vw,20px);color:var(--purple);letter-spacing:.2em;margin-bottom:28px;opacity:0;animation:fadeUp .9s ease .6s forwards;}
+.hero-desc{max-width:600px;font-size:18px;color:#B0A0CC;line-height:1.75;margin:0 auto 40px;opacity:0;animation:fadeUp .9s ease .8s forwards;}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .9s ease 1s forwards;}
+.btn-primary{font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--dark);background:linear-gradient(135deg,var(--gold2),var(--gold));border:none;padding:15px 34px;border-radius:4px;cursor:pointer;text-decoration:none;transition:all .3s;box-shadow:0 0 28px rgba(201,162,42,.3);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(201,162,42,.5);}
+.btn-secondary{font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:.1em;color:var(--gold);background:transparent;border:1px solid rgba(201,162,42,.4);padding:15px 34px;border-radius:4px;cursor:pointer;text-decoration:none;transition:all .3s;}
+.btn-secondary:hover{background:rgba(201,162,42,.08);border-color:var(--gold);transform:translateY(-2px);}
+.stats-bar{background:rgba(13,8,32,.95);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 48px;display:flex;justify-content:center;gap:0;flex-wrap:wrap;}
+.stat-item{text-align:center;padding:10px 44px;border-right:1px solid var(--border);}
+.stat-item:last-child{border-right:none;}
+.stat-val{font-family:'Cinzel',serif;font-size:24px;font-weight:700;color:var(--gold);display:block;line-height:1;margin-bottom:5px;}
+.stat-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.18em;color:var(--muted);}
+.card{background:linear-gradient(145deg,#0f0f20,#1a1030);border:1px solid var(--border);border-radius:10px;padding:28px;}
+.card-sm{background:rgba(13,8,32,.8);border:1px solid var(--border);border-radius:8px;padding:20px;}
+.card-title{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--muted);margin-bottom:16px;}
+.loop-grid{display:flex;gap:0;align-items:center;flex-wrap:wrap;justify-content:center;}
+.loop-step{text-align:center;padding:20px 16px;flex:1;min-width:120px;max-width:160px;}
+.loop-icon{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 12px;border:2px solid;position:relative;}
+.loop-icon::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid;opacity:.3;}
+.loop-name{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:#E8D8FF;margin-bottom:4px;}
+.loop-desc{font-size:12px;color:var(--muted);line-height:1.4;}
+.loop-arrow{font-size:20px;color:var(--gold);opacity:.4;flex-shrink:0;padding:0 4px;}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.feature-card{background:linear-gradient(145deg,rgba(22,13,46,.9),rgba(13,8,32,.95));border:1px solid var(--border);border-radius:8px;padding:32px 28px;transition:all .35s;position:relative;overflow:hidden;}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .35s;}
+.feature-card:hover{border-color:rgba(201,162,42,.3);transform:translateY(-3px);}
+.feature-card:hover::before{opacity:1;}
+.feature-icon{font-size:34px;margin-bottom:18px;display:block;}
+.feature-title{font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:#F0E8FF;margin-bottom:10px;}
+.feature-desc{font-size:16px;color:var(--muted);line-height:1.65;}
+.tag{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--gold);background:rgba(201,162,42,.1);border:1px solid rgba(201,162,42,.25);border-radius:20px;padding:3px 10px;margin-top:14px;}
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;}
+.prog-card{background:rgba(13,8,32,.8);border:1px solid var(--border);border-radius:8px;padding:20px;position:relative;overflow:hidden;}
+.prog-level{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--gold);opacity:.15;position:absolute;top:8px;right:14px;}
+.prog-title{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:#E8D8FF;margin-bottom:6px;}
+.prog-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+.prog-badge{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.1em;display:inline-block;padding:2px 8px;border-radius:10px;margin-top:8px;}
+.pillar-list{display:flex;flex-direction:column;gap:1px;}
+.pillar-item{display:grid;grid-template-columns:50px 1fr auto;align-items:center;gap:24px;padding:22px 28px;background:rgba(13,8,32,.6);border:1px solid var(--border);border-radius:4px;transition:all .3s;}
+.pillar-item:hover{background:rgba(22,13,46,.8);border-color:rgba(201,162,42,.2);}
+.pillar-num{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:rgba(201,162,42,.2);line-height:1;}
+.pillar-name{font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:#E8D8FF;margin-bottom:3px;}
+.pillar-detail{font-size:14px;color:var(--muted);}
+.pillar-check{font-size:18px;color:var(--green);}
+.token-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.alloc-row{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.alloc-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+.alloc-label{flex:1;font-size:14px;color:#C0B0DC;}
+.alloc-lock{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--red);}
+.alloc-pct{font-family:'Cinzel',serif;font-size:17px;font-weight:700;}
+.burn-row{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.15);border-radius:4px;font-size:13px;margin-bottom:6px;}
+.burn-trigger{color:#C0A0A0;}
+.burn-amount{font-family:'Share Tech Mono',monospace;color:var(--red);font-size:12px;}
+.phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+.phase-card{background:rgba(13,8,32,.8);border:1px solid var(--border);border-radius:6px;padding:24px 20px;position:relative;overflow:hidden;}
+.phase-card.active{border-color:rgba(26,154,107,.5);background:rgba(26,154,107,.04);}
+.phase-card.active::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);}
+.phase-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--muted);margin-bottom:8px;}
+.phase-title{font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:#E8D8FF;margin-bottom:14px;}
+.phase-items{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.phase-items li{font-size:13px;color:var(--muted);padding-left:12px;position:relative;}
+.phase-items li::before{content:'—';position:absolute;left:0;color:rgba(201,162,42,.4);}
+.live-dot{display:inline-flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.1em;margin-bottom:8px;}
+.live-dot::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:livePulse 2s ease-in-out infinite;}
+.demo-wrap{background:linear-gradient(145deg,#0d0920,#1a0d35);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.demo-tabs{display:flex;border-bottom:1px solid var(--border);}
+.demo-tab{padding:14px 22px;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.1em;cursor:pointer;border:none;background:transparent;transition:all .2s;border-bottom:2px solid transparent;}
+.demo-tab.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,162,42,.04);}
+.demo-tab:not(.active){color:var(--muted);}
+.demo-content{padding:28px;}
+.class-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.class-card{padding:16px 12px;border-radius:8px;cursor:pointer;transition:all .3s;text-align:center;border:2px solid;}
+.class-card.selected{transform:scale(1.04);}
+.class-icon{font-size:28px;margin-bottom:8px;}
+.class-name{font-family:'Cinzel',serif;font-size:13px;font-weight:700;margin-bottom:3px;}
+.class-role{font-size:10px;color:var(--muted);font-family:'Share Tech Mono',monospace;}
+.stat-bar-wrap{margin-bottom:8px;}
+.stat-bar-label{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:3px;font-family:monospace;}
+.stat-bar-bg{background:#1a1a2e;border-radius:2px;height:5px;overflow:hidden;}
+.stat-bar-fill{height:100%;border-radius:2px;transition:width .8s ease;}
+.dungeon-card{padding:16px;border-radius:8px;cursor:pointer;transition:all .3s;border:1px solid;margin-bottom:10px;}
+.dungeon-name{font-family:'Cinzel',serif;font-size:14px;font-weight:700;margin-bottom:6px;}
+.dungeon-meta{display:flex;gap:14px;font-size:11px;color:var(--muted);font-family:monospace;}
+.log-box{background:#05050e;border:1px solid rgba(123,47,190,.25);border-radius:8px;padding:14px;height:200px;overflow-y:auto;font-family:monospace;font-size:12px;line-height:1.9;}
+.log-line{color:#8a8aaa;margin-bottom:1px;}
+.log-result{margin-top:10px;padding:10px 12px;background:rgba(26,154,107,.12);border:1px solid rgba(26,154,107,.4);border-radius:6px;}
+.supply-wrap svg{width:100%;max-width:480px;}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.team-card{background:rgba(13,8,32,.8);border:1px solid var(--border);border-radius:8px;padding:24px;text-align:center;transition:all .3s;}
+.team-card:hover{border-color:rgba(201,162,42,.3);transform:translateY(-3px);}
+.team-avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:28px;border:2px solid;}
+.team-name{font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:#E8D8FF;margin-bottom:4px;}
+.team-role{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.12em;margin-bottom:10px;}
+.team-bio{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:12px;}
+.partner-strip{background:linear-gradient(135deg,rgba(123,47,190,.1),rgba(74,18,128,.05));border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:40px 24px;text-align:center;}
+.partner-logos{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:24px;}
+.partner-badge{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.1em;padding:10px 20px;border:1px solid var(--border);border-radius:4px;transition:all .2s;}
+.partner-badge:hover{border-color:rgba(201,162,42,.3);color:var(--gold);}
+footer{background:rgba(6,4,15,.98);border-top:1px solid var(--border);padding:48px 48px 28px;}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px;}
+.footer-brand-name{font-family:'Cinzel',serif;font-size:18px;font-weight:900;background:linear-gradient(135deg,var(--gold),#fff8e0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;}
+.footer-brand-desc{font-size:14px;color:var(--muted);line-height:1.65;max-width:280px;}
+.footer-col-title{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--purple);margin-bottom:16px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.footer-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-bottom{max-width:1100px;margin:0 auto;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-family:'Share Tech Mono',monospace;font-size:10px;color:rgba(138,122,170,.5);letter-spacing:.08em;}
+.footer-disc{font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(138,122,170,.3);max-width:380px;text-align:right;}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes livePulse{0%,100%{box-shadow:0 0 0 0 rgba(26,154,107,.4)}50%{box-shadow:0 0 0 6px rgba(26,154,107,0)}}
+@keyframes scrollLine{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.6);opacity:.4}}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp 1s ease 1.6s forwards;}
+.scroll-hint span{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--muted);}
+.scroll-line{width:1px;height:38px;background:linear-gradient(180deg,var(--gold),transparent);animation:scrollLine 2s ease-in-out infinite;}
+@media(max-width:768px){nav{padding:14px 20px;}.nav-links{display:none;}.token-grid{grid-template-columns:1fr;}.class-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr;}.pillar-item{grid-template-columns:36px 1fr auto;gap:14px;padding:16px;}.stats-bar{padding:16px 12px;}.stat-item{padding:10px 16px;}}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:rgba(123,47,190,.5);border-radius:2px}
+
+/* ── ECONOMY HUD ── */
+#econHUD{position:fixed;bottom:24px;right:24px;z-index:999;background:rgba(13,8,32,0.92);border:1px solid var(–border);border-radius:8px;padding:16px 20px;min-width:220px;box-shadow:0 0 24px rgba(201,162,42,0.08),0 0 60px rgba(201,162,42,0.03);backdrop-filter:blur(12px);}
+#econHUD .hud-title{font-family:‘Share Tech Mono’,monospace;font-size:9px;letter-spacing:.25em;color:var(–gold);margin-bottom:12px;opacity:.7;}
+#econHUD .hud-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(123,47,190,.12);}
+#econHUD .hud-row:last-child{border-bottom:none;}
+#econHUD .hud-label{font-family:‘Share Tech Mono’,monospace;font-size:9px;letter-spacing:.12em;color:var(–muted);}
+#econHUD .hud-val{font-family:‘Share Tech Mono’,monospace;font-size:14px;font-weight:700;color:var(–gold);letter-spacing:.05em;}
+#econHUD .hud-dot{width:5px;height:5px;border-radius:50%;background:var(–green);margin-right:8px;display:inline-block;animation:livePulse 2s ease-in-out infinite;}
+@media(max-width:480px){#econHUD{bottom:12px;right:12px;min-width:180px;padding:12px 14px;}}
+</style>
+
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<div class="bg-glow"></div>
+<div class="wrap">
+<nav>
+  <div class="nav-logo">⚔ FORTRESS LEGEND</div>
+  <ul class="nav-links">
+    <li><a href="#game">GAME</a></li>
+    <li><a href="#tokenomics">TOKENOMICS</a></li>
+    <li><a href="#roadmap">ROADMAP</a></li>
+    <li><a href="#team">TEAM</a></li>
+    <li><a href="https://github.com/johnweslycherelus-hue/fortresslegend/blob/main/FortressLegend%20Whitepaper%20v3.pdf" target="_blank">WHITEPAPER</a></li>
+  </ul>
+  <a href="#demo" class="nav-cta">PLAY PROTOTYPE</a>
+</nav>
+<section class="hero">
+  <div class="hero-eyebrow">THE WORLD OF ELDORIA AWAITS</div>
+  <h1 class="hero-title">FORTRESS<br>LEGEND</h1>
+  <div class="hero-sub">$FLG &nbsp;·&nbsp; POLYGON POS &nbsp;·&nbsp; PLAY-TO-EARN DeFi RPG</div>
+  <p class="hero-desc">A sustainable, rug-proof blockchain RPG built for long-term community ownership. Turn-based D&amp;D 5e combat, NFT hero ownership, and a Day-1 DAO — designed to be worth playing even if the token price is zero.</p>
+  <div class="hero-ctas">
+    <a href="#demo" class="btn-primary">PLAY PROTOTYPE</a>
+    <a href="https://discord.gg/kKXDax78B" target="_blank" class="btn-secondary">JOIN DISCORD</a>
+  </div>
+  <div class="scroll-hint"><span>SCROLL</span><div class="scroll-line"></div></div>
+</section>
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-val">100M</span><span class="stat-label">$FLG FIXED SUPPLY</span></div>
+  <div class="stat-item"><span class="stat-val">40%</span><span class="stat-label">LIQUIDITY LOCKED</span></div>
+  <div class="stat-item"><span class="stat-val">Month 18</span><span class="stat-label">NET DEFLATION</span></div>
+  <div class="stat-item"><span class="stat-val">Day 1</span><span class="stat-label">DAO GOVERNANCE</span></div>
+  <div class="stat-item"><span class="stat-val">$0</span><span class="stat-label">PRESALE</span></div>
+</div>
+<section id="game">
+  <div class="inner">
+    <span class="section-tag reveal">⚔ CORE GAMEPLAY LOOP</span>
+    <h2 class="section-title reveal">Why Players <span>Return Every Day</span></h2>
+    <p class="section-lead reveal">A strategic loop engineered for habit — daily quests, weekly PvP, seasonal world bosses. Every action burns $FLG.</p>
+    <div class="loop-grid reveal">
+      <div class="loop-step"><div class="loop-icon" style="background:rgba(123,47,190,.2);border-color:var(--purple);color:var(--purple);">🏰</div><div class="loop-name">Build Fortress</div><div class="loop-desc">Design defenses, upgrade towers, set traps</div></div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step"><div class="loop-icon" style="background:rgba(192,57,43,.2);border-color:var(--red);color:var(--red);">⚔️</div><div class="loop-name">Mint Heroes</div><div class="loop-desc">Warrior, Mage, Rogue or Healer — each unique NFT</div></div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step"><div class="loop-icon" style="background:rgba(212,172,13,.2);border-color:var(--gold);color:var(--gold);">🗡️</div><div class="loop-name">Raid Dungeons</div><div class="loop-desc">AI-adapted dungeons burn $FLG on entry</div></div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step"><div class="loop-icon" style="background:rgba(26,154,107,.2);border-color:var(--green);color:var(--green);">💰</div><div class="loop-name">Earn & Stake</div><div class="loop-desc">Collect loot, stake $FLG for up to 2.5× APY</div></div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step"><div class="loop-icon" style="background:rgba(41,128,185,.2);border-color:#2980B9;color:#2980B9;">🔄</div><div class="loop-name">Reinforce</div><div class="loop-desc">Upgrade, defend, repeat — every week stronger</div></div>
+    </div>
+  </div>
+</section>
+<section style="background:linear-gradient(180deg,var(--dark) 0%,var(--dark3) 50%,var(--dark) 100%);padding:80px 24px;">
+  <div class="inner">
+    <span class="section-tag reveal">💡 COMPETITIVE ADVANTAGE</span>
+    <h2 class="section-title reveal">Why Fortress Legend <span>Wins</span></h2>
+    <div class="feature-grid">
+      <div class="feature-card reveal"><span class="feature-icon">🤖</span><div class="feature-title">AI-Powered Dungeons</div><p class="feature-desc">Every raid dynamically adapts to your hero profile via Chainlink Functions. Difficulty, enemies, and loot scale intelligently — no two runs are identical.</p><span class="tag">NEW · PHASE 3</span></div>
+      <div class="feature-card reveal"><span class="feature-icon">🎲</span><div class="feature-title">True Tactical Combat</div><p class="feature-desc">Full D&amp;D 5th Edition mechanics: initiative rolls, action economy, saving throws, advantage/disadvantage. 50+ years of game-balance precedent.</p><span class="tag">LAUNCH · PHASE 2</span></div>
+      <div class="feature-card reveal"><span class="feature-icon">💎</span><div class="feature-title">Player-Driven Economy</div><p class="feature-desc">$FLG powers every core action. Build, raid, rent heroes, craft equipment, vote in governance. Token utility is structural — not cosmetic.</p><span class="tag">LAUNCH · PHASE 2</span></div>
+      <div class="feature-card reveal"><span class="feature-icon">📱</span><div class="feature-title">Mobile-First PWA</div><p class="feature-desc">Install from any browser — no app store. Wallet-less onboarding via Web3Auth. Designed for emerging markets where mobile-first internet dominates.</p><span class="tag">NEW · PHASE 2</span></div>
+      <div class="feature-card reveal"><span class="feature-icon">🔑</span><div class="feature-title">Hero Rental Market</div><p class="feature-desc">Rent your heroes to new players for passive $FLG income. 10% protocol fee burned on every rental — a new DeFi primitive for NFT gaming.</p><span class="tag">NEW · PHASE 3</span></div>
+      <div class="feature-card reveal"><span class="feature-icon">🏛️</span><div class="feature-title">Day-1 DAO Governance</div><p class="feature-desc">$FLG holders vote on all material decisions from the first day. Governance Mining rewards active participation. Conviction voting prevents whale capture.</p><span class="tag">LAUNCH · PHASE 2</span></div>
+    </div>
+  </div>
+</section>
+<section id="demo" style="padding:80px 24px;">
+  <div class="inner">
+    <span class="section-tag reveal">🎮 INTERACTIVE PROTOTYPE</span>
+    <h2 class="section-title reveal">Play the Demo <span>Right Now</span></h2>
+    <p class="section-lead reveal">Mint a hero, enter a dungeon, earn $FLG. Real burn mechanics. Balance persists across sessions.</p>
+    <div class="demo-wrap reveal">
+      <div class="demo-tabs">
+        <button class="demo-tab active" onclick="switchTab('combat')">⚔ COMBAT</button>
+        <button class="demo-tab" onclick="switchTab('staking')">◈ STAKING</button>
+        <button class="demo-tab" onclick="switchTab('tokenomics')">📊 TOKENOMICS</button>
+      </div>
+      <div id="tab-combat" class="demo-content">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div>
+            <div class="card-title">SELECT HERO CLASS</div>
+            <div class="class-grid" id="classGrid"></div>
+            <div id="heroStats" class="card" style="margin-bottom:16px;"></div>
+            <div id="mintArea"></div>
+          </div>
+          <div>
+            <div class="card-title" style="margin-bottom:12px;">CHOOSE DUNGEON</div>
+            <div id="dungeonList"></div>
+            <button id="enterBtn" onclick="enterDungeon()" style="width:100%;margin-bottom:14px;padding:13px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;border-radius:8px;cursor:pointer;border:none;transition:all .2s;"></button>
+            <div class="card-title">AI DUNGEON MASTER LOG</div>
+            <div class="log-box" id="logBox"><div style="color:#333;text-align:center;margin-top:50px;">Dungeon log will appear here…</div></div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-staking" class="demo-content" style="display:none;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div>
+            <div class="card-title" style="margin-bottom:16px;">STAKING CALCULATOR</div>
+            <div class="card-sm" style="margin-bottom:16px;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+                <div><div style="font-size:11px;color:var(--muted);margin-bottom:6px;font-family:monospace;">$FLG AMOUNT</div><input type="number" id="stakeAmount" value="1000" oninput="calcStake()" style="width:100%;background:#1a1a2e;border:1px solid var(--border);border-radius:4px;padding:8px 10px;color:#e8d0ff;font-size:14px;font-family:monospace;outline:none;"></div>
+                <div><div style="font-size:11px;color:var(--muted);margin-bottom:6px;font-family:monospace;">PRICE (USD)</div><input type="number" id="stakePrice" value="0.10" step="0.01" oninput="calcStake()" style="width:100%;background:#1a1a2e;border:1px solid var(--border);border-radius:4px;padding:8px 10px;color:#e8d0ff;font-size:14px;font-family:monospace;outline:none;"></div>
+              </div>
+              <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-family:monospace;">STAKING TIER</div>
+              <div id="tierBtns" style="display:flex;gap:8px;margin-bottom:14px;"></div>
+              <div id="tierInfo" style="font-size:11px;color:var(--muted);font-family:monospace;margin-bottom:16px;"></div>
+              <div id="stakeResults" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="card-title" style="margin-bottom:16px;">TIER DETAILS</div>
+            <div id="tierDetails"></div>
+            <div class="card-sm" style="margin-top:14px;background:rgba(201,162,42,.08);border-color:rgba(201,162,42,.3);">
+              <div style="font-size:10px;color:var(--gold);font-family:monospace;margin-bottom:8px;">POST-MONTH 24</div>
+              <div style="font-size:13px;color:#c0b0a0;font-family:'Crimson Text',serif;line-height:1.6;">Staking rewards funded entirely by protocol revenue — marketplace royalties, dungeon fees, PvP arena. Zero new $FLG emissions after Month 24.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-tokenomics" class="demo-content" style="display:none;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div>
+            <div class="card-title" style="margin-bottom:16px;">SUPPLY SIMULATION — 36 MONTHS</div>
+            <div class="supply-wrap"><svg id="supplyChart" viewBox="0 0 500 180"></svg></div>
+            <div style="display:flex;gap:10px;margin-top:12px;">
+              <div style="flex:1;background:rgba(26,154,107,.1);border:1px solid rgba(26,154,107,.3);border-radius:6px;padding:8px 10px;font-family:monospace;font-size:10px;"><div style="color:var(--green);font-weight:700;margin-bottom:2px;">Month 18</div><div style="color:var(--muted);">Base deflation</div></div>
+              <div style="flex:1;background:rgba(201,162,42,.1);border:1px solid rgba(201,162,42,.3);border-radius:6px;padding:8px 10px;font-family:monospace;font-size:10px;"><div style="color:var(--gold);font-weight:700;margin-bottom:2px;">Month 14</div><div style="color:var(--muted);">Bull deflation</div></div>
+              <div style="flex:1;background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.3);border-radius:6px;padding:8px 10px;font-family:monospace;font-size:10px;"><div style="color:var(--red);font-weight:700;margin-bottom:2px;">Month 30</div><div style="color:var(--muted);">Bear deflation</div></div>
+            </div>
+          </div>
+          <div>
+            <div class="card-title" style="margin-bottom:16px;">TOKEN ALLOCATION</div>
+            <div id="allocList"></div>
+            <div class="card-sm" style="margin-top:14px;background:rgba(192,57,43,.06);border-color:rgba(192,57,43,.2);">
+              <div style="font-size:10px;color:var(--red);font-family:monospace;margin-bottom:8px;">🔥 TOTAL BURNS AT 10K MAU</div>
+              <div style="font-size:20px;color:var(--red);font-family:'Cinzel',serif;font-weight:900;">~1,980,000 $FLG/year</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section style="background:linear-gradient(180deg,var(--dark) 0%,var(--dark2) 100%);padding:80px 24px;">
+  <div class="inner">
+    <span class="section-tag reveal">📈 PLAYER PROGRESSION</span>
+    <h2 class="section-title reveal">Months of <span>Depth Ahead</span></h2>
+    <p class="section-lead reveal">Every milestone unlocks new content, new burns, and new ways to earn $FLG.</p>
+    <div class="prog-grid">
+      <div class="prog-card reveal" style="border-color:rgba(26,154,107,.3);"><div class="prog-level">5</div><div class="prog-title">Unlock Rogue Hero</div><div class="prog-desc">Master stealth mechanics. Sneak Attack multipliers activate. Shadow Step teleportation unlocked.</div><span class="prog-badge" style="background:rgba(26,154,107,.15);color:var(--green);border:1px solid rgba(26,154,107,.3);">LEVEL 5</span></div>
+      <div class="prog-card reveal" style="border-color:rgba(123,47,190,.3);"><div class="prog-level">15</div><div class="prog-title">Magic Traps Unlock</div><div class="prog-desc">Deploy arcane barriers and elemental traps. Defend your fortress with advanced mechanisms.</div><span class="prog-badge" style="background:rgba(123,47,190,.15);color:var(--purple);border:1px solid rgba(123,47,190,.3);">LEVEL 15</span></div>
+      <div class="prog-card reveal" style="border-color:rgba(201,162,42,.3);"><div class="prog-level">25</div><div class="prog-title">Enter Guild Wars</div><div class="prog-desc">Form or join a guild. Coordinate multi-fortress raids. Shared treasury and governance voting.</div><span class="prog-badge" style="background:rgba(201,162,42,.15);color:var(--gold);border:1px solid rgba(201,162,42,.3);">LEVEL 25</span></div>
+      <div class="prog-card reveal" style="border-color:rgba(192,57,43,.3);"><div class="prog-level">40</div><div class="prog-title">Legendary Dragon Knight</div><div class="prog-desc">Ultra-rare hero class. Unique abilities. Massive burn cost. Highest prestige in Eldoria.</div><span class="prog-badge" style="background:rgba(192,57,43,.15);color:var(--red);border:1px solid rgba(192,57,43,.3);">LEVEL 40 · LEGENDARY</span></div>
+      <div class="prog-card reveal" style="border-color:rgba(41,128,185,.3);"><div class="prog-level">50</div><div class="prog-title">World Boss Events</div><div class="prog-desc">500+ players unite to defeat The Voidlord. Seasonal rewards. Exclusive NFT drops for champions.</div><span class="prog-badge" style="background:rgba(41,128,185,.15);color:#4488FF;border:1px solid rgba(41,128,185,.3);">LEVEL 50 · SEASONAL</span></div>
+      <div class="prog-card reveal" style="border-color:rgba(123,47,190,.3);"><div class="prog-level">60</div><div class="prog-title">Max Level Champion</div><div class="prog-desc">Full stat scaling. Access all Tier 4 content. Governance weight maximized. Title NFT awarded.</div><span class="prog-badge" style="background:rgba(123,47,190,.15);color:var(--purple);border:1px solid rgba(123,47,190,.3);">LEVEL 60 · MAX</span></div>
+    </div>
+  </div>
+</section>
+<section id="pillars" style="background:linear-gradient(180deg,var(--dark2) 0%,var(--dark3) 50%,var(--dark) 100%);padding:80px 24px;">
+  <div class="inner">
+    <span class="section-tag reveal">🛡️ ANTI-RUG ARCHITECTURE</span>
+    <h2 class="section-title reveal">Six Pillars of <span>Sustainability</span></h2>
+    <p class="section-lead reveal">Every structural failure mode from the 2021–2022 GameFi graveyard — directly addressed with specific, verifiable, on-chain mechanisms.</p>
+    <div class="pillar-list">
+      <div class="pillar-item reveal"><div class="pillar-num">01</div><div><div class="pillar-name">Security First</div><div class="pillar-detail">CertiK + PeckShield dual audits · $50K Immunefi bug bounty · 48h timelocks · RBAC on all contracts</div></div><div class="pillar-check">✓</div></div>
+      <div class="pillar-item reveal"><div class="pillar-num">02</div><div><div class="pillar-name">Radical Transparency</div><div class="pillar-detail">Fully doxxed team · KYC verified · Legal vesting tied to identity · Identity removal = full forfeit to DAO</div></div><div class="pillar-check">✓</div></div>
+      <div class="pillar-item reveal"><div class="pillar-num">03</div><div><div class="pillar-name">Sustainable Tokenomics</div><div class="pillar-detail">100M $FLG hard cap · 2% auto-burn · Linear 24-month emission · Revenue-funded rewards post-Month 24</div></div><div class="pillar-check">✓</div></div>
+      <div class="pillar-item reveal"><div class="pillar-num">04</div><div><div class="pillar-name">Deep, Multi-Layered Utility</div><div class="pillar-detail">$FLG required for minting, crafting, dungeons, guilds, PvP, governance, staking, and rentals</div></div><div class="pillar-check">✓</div></div>
+      <div class="pillar-item reveal"><div class="pillar-num">05</div><div><div class="pillar-name">Community Ownership from Day 1</div><div class="pillar-detail">Full DAO operational at mainnet · Binding on-chain votes · Governance Mining rewards participation</div></div><div class="pillar-check">✓</div></div>
+      <div class="pillar-item reveal"><div class="pillar-num">06</div><div><div class="pillar-name">AI-Powered Intelligence</div><div class="pillar-detail">Chainlink Functions AI Dungeon Master · Adaptive difficulty · Dynamic narratives · On-chain verified outputs</div></div><div class="pillar-check">✓</div></div>
+    </div>
+  </div>
+</section>
+<section id="tokenomics" style="padding:80px 24px;">
+  <div class="inner">
+    <span class="section-tag reveal">◈ $FLG TOKEN</span>
+    <h2 class="section-title reveal">Tokenomics Built <span>to Last</span></h2>
+    <p class="section-lead reveal">100,000,000 $FLG. Fixed forever. No additional minting. Net deflationary by Month 18.</p>
+    <div class="token-grid">
+      <div class="card reveal">
+        <div class="card-title">ALLOCATION BREAKDOWN</div>
+        <div class="alloc-row"><div class="alloc-dot" style="background:var(--purple)"></div><div class="alloc-label">Liquidity Pools (QuickSwap)<div class="alloc-lock">🔒 PERMANENTLY LOCKED</div></div><div class="alloc-pct" style="color:var(--purple)">40%</div></div>
+        <div class="alloc-row"><div class="alloc-dot" style="background:var(--gold)"></div><div class="alloc-label">Staking & Farming Rewards</div><div class="alloc-pct" style="color:var(--gold)">25%</div></div>
+        <div class="alloc-row"><div class="alloc-dot" style="background:var(--red)"></div><div class="alloc-label">Team Allocation<div class="alloc-lock">🔒 4-YEAR VEST · 12MO CLIFF</div></div><div class="alloc-pct" style="color:var(--red)">15%</div></div>
+        <div class="alloc-row"><div class="alloc-dot" style="background:var(--green)"></div><div class="alloc-label">DAO Treasury & Marketing</div><div class="alloc-pct" style="color:var(--green)">10%</div></div>
+        <div class="alloc-row"><div class="alloc-dot" style="background:#2980B9"></div><div class="alloc-label">Airdrops & In-Game Rewards</div><div class="alloc-pct" style="color:#2980B9">10%</div></div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">BURN MECHANICS — ~1,980,000 $FLG/YEAR AT 10K MAU</div>
+        <div class="burn-row"><span class="burn-trigger">Every $FLG transaction</span><span class="burn-amount">800,000/yr</span></div>
+        <div class="burn-row"><span class="burn-trigger">Tier 3–4 dungeon entries</span><span class="burn-amount">300,000/yr</span></div>
+        <div class="burn-row"><span class="burn-trigger">Hero permanent death</span><span class="burn-amount">250,000/yr</span></div>
+        <div class="burn-row"><span class="burn-trigger">Equipment crafting fails</span><span class="burn-amount">120,000/yr</span></div>
+        <div class="burn-row"><span class="burn-trigger">Hero rental protocol fee</span><span class="burn-amount">95,000/yr</span></div>
+        <div class="burn-row"><span class="burn-trigger">Revivify + other events</span><span class="burn-amount">415,000/yr</span></div>
+        <div class="burn-row" style="border-color:rgba(192,57,43,.4);background:rgba(192,57,43,.1);margin-top:8px;"><span class="burn-trigger" style="color:#E0A0A0;font-weight:600;">NET DEFLATION CROSSOVER</span><span class="burn-amount" style="font-size:14px;">Month 18</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="roadmap" style="background:rgba(13,8,32,.6);padding:80px 24px;">
+  <div class="inner">
+    <span class="section-tag reveal">📅 ROADMAP</span>
+    <h2 class="section-title reveal">From Testnet <span>to Eldoria</span></h2>
+    <div class="phase-grid">
+      <div class="phase-card active reveal"><div class="live-dot">LIVE NOW</div><div class="phase-label">Q1 2026 · PHASE 1</div><div class="phase-title">Foundation</div><ul class="phase-items"><li>Whitepaper V3.0 ✓</li><li>Interactive prototype ✓</li><li>CertiK audit engaged ✓</li><li>Community alpha (500 wallets)</li></ul></div>
+      <div class="phase-card reveal"><div class="phase-label">Q2 2026 · PHASE 2</div><div class="phase-title">Launch</div><ul class="phase-items"><li>Mainnet TGE + liquidity lock</li><li>Full game: 4 classes</li><li>Mobile PWA + Web3Auth</li><li>Day-1 DAO operational</li></ul></div>
+      <div class="phase-card reveal"><div class="phase-label">Q3–Q4 2026 · PHASE 3</div><div class="phase-title">Expansion</div><ul class="phase-items"><li>Tier 3–4 dungeons</li><li>Guild system</li><li>AI Dungeon Master</li><li>Hero Rental Market</li></ul></div>
+      <div class="phase-card reveal"><div class="phase-label">Q1–Q2 2027 · PHASE 4</div><div class="phase-title">Advanced</div><ul class="phase-items"><li>Paladin & Necromancer</li><li>Land ownership NFTs</li><li>Cross-guild world boss</li><li>35,000+ MAU target</li></ul></div>
+    </div>
+  </div>
+</section>
+<section id="team" style="padding:80px 24px;">
+  <div class="inner">
+    <span class="section-tag reveal">👥 CORE TEAM</span>
+    <h2 class="section-title reveal">Fully Doxxed. <span>KYC Verified.</span></h2>
+    <p class="section-lead reveal">Every team member is publicly identified and legally bound to a 4-year vesting schedule. No anonymous founders — ever.</p>
+    <div class="team-grid">
+      <div class="team-card reveal"><div class="team-avatar" style="background:rgba(201,162,42,.15);border-color:var(--gold);color:var(--gold);">⚔</div><div class="team-name">Vael</div><div class="team-role" style="color:var(--gold);">FOUNDER & LEAD DESIGNER</div><div class="team-bio">Entrepreneur across blockchain gaming, sports tech, and AI SaaS. Led Fortress Legend from concept to V3.0 whitepaper.</div><a href="https://github.com/johnweslycherelus-hue/fortresslegend" target="_blank" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--purple);text-decoration:none;letter-spacing:.1em;">GITHUB →</a></div>
+      <div class="team-card reveal"><div class="team-avatar" style="background:rgba(123,47,190,.15);border-color:var(--purple);color:var(--purple);">🔮</div><div class="team-name">CTO — Open</div><div class="team-role" style="color:var(--purple);">SMART CONTRACT LEAD</div><div class="team-bio">Seeking: 7+ years Solidity experience, Polygon-native. Token-based compensation (2% $FLG, 4-year vest).</div><a href="https://discord.gg/kKXDax78B" target="_blank" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--purple);text-decoration:none;letter-spacing:.1em;">APPLY VIA DISCORD →</a></div>
+      <div class="team-card reveal"><div class="team-avatar" style="background:rgba(26,154,107,.15);border-color:var(--green);color:var(--green);">🛡️</div><div class="team-name">Dr. Lena Fischer</div><div class="team-role" style="color:var(--green);">LEGAL ADVISOR</div><div class="team-bio">Partner at Web3 Legal Partners. 30+ DeFi projects advised on EU regulatory compliance. MiCA framework specialist.</div></div>
+      <div class="team-card reveal"><div class="team-avatar" style="background:rgba(192,57,43,.15);border-color:var(--red);color:var(--red);">📊</div><div class="team-name">Raj Krishnamurthy</div><div class="team-role" style="color:var(--red);">DEFI ADVISOR</div><div class="team-bio">Co-founder of a top-20 DeFi protocol. $800M TVL peak. Advisor to Polygon and Aave grant programmes.</div></div>
+    </div>
+  </div>
+</section>
+<div class="partner-strip">
+  <div class="inner">
+    <span class="section-tag" style="text-align:center;display:block;">ECOSYSTEM PARTNERS</span>
+    <h3 style="font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:#F0E8FF;text-align:center;">Built on Polygon. <span style="color:var(--gold);">Powered by the Best.</span></h3>
+    <div class="partner-logos">
+      <div class="partner-badge">POLYGON POS</div><div class="partner-badge">CHAINLINK VRF + FUNCTIONS</div><div class="partner-badge">QUICKSWAP DEX</div><div class="partner-badge">WEB3AUTH</div><div class="partner-badge">CERTIK AUDIT</div><div class="partner-badge">IMMUNEFI BOUNTY</div><div class="partner-badge">THE GRAPH</div><div class="partner-badge">ARWEAVE</div>
+    </div>
+  </div>
+</div>
+<section style="text-align:center;background:linear-gradient(145deg,rgba(22,13,46,.95),rgba(6,4,15,.98));border-top:1px solid var(--border);padding:80px 24px;">
+  <div class="inner">
+    <span class="section-tag reveal" style="text-align:center;display:block;">⟳ LAUNCHING Q2 2026</span>
+    <h2 class="section-title reveal" style="text-align:center;">The Gates of Eldoria<br><span>Open April 2026</span></h2>
+    <div style="display:flex;gap:20px;justify-content:center;margin:36px 0;flex-wrap:wrap;" class="reveal">
+      <div style="text-align:center;"><span style="font-family:'Cinzel',serif;font-size:44px;font-weight:900;color:var(--gold);display:block;line-height:1;" id="cdDays">--</span><div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.2em;margin-top:6px;">DAYS</div></div>
+      <div style="font-family:'Cinzel',serif;font-size:36px;color:rgba(201,162,42,.3);padding-top:4px;">:</div>
+      <div style="text-align:center;"><span style="font-family:'Cinzel',serif;font-size:44px;font-weight:900;color:var(--gold);display:block;line-height:1;" id="cdHours">--</span><div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.2em;margin-top:6px;">HOURS</div></div>
+      <div style="font-family:'Cinzel',serif;font-size:36px;color:rgba(201,162,42,.3);padding-top:4px;">:</div>
+      <div style="text-align:center;"><span style="font-family:'Cinzel',serif;font-size:44px;font-weight:900;color:var(--gold);display:block;line-height:1;" id="cdMins">--</span><div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.2em;margin-top:6px;">MINUTES</div></div>
+      <div style="font-family:'Cinzel',serif;font-size:36px;color:rgba(201,162,42,.3);padding-top:4px;">:</div>
+      <div style="text-align:center;"><span style="font-family:'Cinzel',serif;font-size:44px;font-weight:900;color:var(--gold);display:block;line-height:1;" id="cdSecs">--</span><div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.2em;margin-top:6px;">SECONDS</div></div>
+    </div>
+    <div class="hero-ctas reveal">
+      <a href="https://github.com/johnweslycherelus-hue/fortresslegend/blob/main/FortressLegend%20Whitepaper%20v3.pdf" target="_blank" class="btn-primary">DOWNLOAD WHITEPAPER V3.0</a>
+      <a href="https://discord.gg/kKXDax78B" target="_blank" class="btn-secondary">JOIN DISCORD</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-grid">
+    <div><div class="footer-brand-name">⚔ FORTRESS LEGEND</div><p class="footer-brand-desc">A sustainable Play-to-Earn DeFi RPG on Polygon PoS. Built for long-term community ownership. Worth playing even if the token price is zero.</p></div>
+    <div><div class="footer-col-title">RESOURCES</div><ul class="footer-links"><li><a href="https://github.com/johnweslycherelus-hue/fortresslegend/blob/main/FortressLegend%20Whitepaper%20v3.pdf" target="_blank">Whitepaper V3.0</a></li><li><a href="https://github.com/johnweslycherelus-hue/fortresslegend" target="_blank">GitHub</a></li><li><a href="#roadmap">Roadmap</a></li><li><a href="#tokenomics">Tokenomics</a></li></ul></div>
+    <div><div class="footer-col-title">COMMUNITY</div><ul class="footer-links"><li><a href="https://discord.gg/kKXDax78B" target="_blank">Discord</a></li><li><a href="https://x.com/fortresslegendf" target="_blank">Twitter / X</a></li><li><a href="mailto:contact@fortresslegend.com">contact@fortresslegend.com</a></li></ul></div>
+    <div><div class="footer-col-title">SECURITY</div><ul class="footer-links"><li><a href="#">CertiK Audit (Q1 2026)</a></li><li><a href="#">PeckShield Audit</a></li><li><a href="#">Immunefi Bug Bounty</a></li><li><a href="#">Smart Contracts</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 FORTRESS LEGEND · ALL RIGHTS RESERVED · POLYGON POS</div>
+    <div class="footer-disc">$FLG tokens are utility tokens. This site does not constitute financial advice. Not for distribution in restricted jurisdictions.</div>
+  </div>
+</footer>
+
+<!-- ── ECONOMY HUD ── -->
+
+<div id="econHUD">
+  <div class="hud-title"><span class="hud-dot"></span>FORTRESS LEGEND ECONOMY</div>
+  <div class="hud-row"><span class="hud-label">FLG BURNED TODAY</span><span class="hud-val" id="hud-burned">0</span></div>
+  <div class="hud-row"><span class="hud-label">HEROES MINTED</span><span class="hud-val" id="hud-heroes">0</span></div>
+  <div class="hud-row"><span class="hud-label">DUNGEONS CLEARED</span><span class="hud-val" id="hud-dungeons">0</span></div>
+</div>
+
+</div><!-- /wrap -->
+<script>
+const canvas=document.getElementById('canvas');const ctx=canvas.getContext('2d');let W,H,pts=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+function initPts(){pts=Array.from({length:70},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.22,vy:-Math.random()*.38-.07,r:Math.random()*1.7+.4,o:Math.random()*.4+.05,c:Math.random()>.55?'#C9A22A':'#7B2FBE'}));}
+function draw(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}if(p.x<-10)p.x=W+10;if(p.x>W+10)p.x=-10;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.c+Math.floor(p.o*255).toString(16).padStart(2,'0');ctx.fill();});requestAnimationFrame(draw);}
+window.addEventListener('resize',()=>{resize();initPts();});resize();initPts();draw();
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const nav=document.querySelector('nav');
+window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>60?'rgba(6,4,15,.97)':'rgba(6,4,15,.9)';});
+function tick(){const diff=new Date('2026-04-01T00:00:00Z')-Date.now();if(diff<=0)return;const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),m=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);document.getElementById('cdDays').textContent=String(d).padStart(2,'0');document.getElementById('cdHours').textContent=String(h).padStart(2,'0');document.getElementById('cdMins').textContent=String(m).padStart(2,'0');document.getElementById('cdSecs').textContent=String(s).padStart(2,'0');}
+tick();setInterval(tick,1000);
+const CLASSES=[{id:'warrior',name:'Warrior',role:'Frontline Tank',icon:'⚔️',color:'#C0392B',stats:{STR:95,DEX:45,CON:90,INT:30,WIS:35},ability:"Champion's Wrath",desc:'Triple dmg + kill restores full HP',cost:50,lore:'Masters of the battlefield, Warriors channel raw fury.'},{id:'mage',name:'Mage',role:'AoE Spellcaster',icon:'🔮',color:'#8E44AD',stats:{STR:20,DEX:55,CON:25,INT:98,WIS:80},ability:'Rift Explosion',desc:'20d10 void dmg · 40ft radius',cost:50,lore:'Wielders of ancient magic, reshaping reality.'},{id:'rogue',name:'Rogue',role:'Stealth & Burst',icon:'🗡️',color:'#1A8A6B',stats:{STR:55,DEX:97,CON:50,INT:70,WIS:40},ability:'Death Mark',desc:'+100% dmg to target · 5 turns',cost:50,lore:'Silent and deadly, exploiting every weakness.'},{id:'healer',name:'Healer',role:'Support & Sustain',icon:'✨',color:'#D4AC0D',stats:{STR:25,DEX:40,CON:60,INT:55,WIS:99},ability:'Divine Miracle',desc:'Full party HP + all conditions cured',cost:50,lore:'Channels of divine power, keeping light alive.'}];
+const DUNGEONS=[{id:'crypt',name:'Shadow Crypt',tier:1,diff:'Initiate',entry:0,min:150,max:400,color:'#8B0000',logs:['🗺️ Entering Shadow Crypt — Tier 1...','👁️ Shadows stir in the corridor ahead...','⚔️ Skeleton Warrior appears! Initiative: 18','🎯 Your hero strikes — 2d8+5 slashing damage!','💀 Skeleton Warrior defeated!','🔑 Ancient chest discovered...','✨ Dungeon cleared! Rewards distributed.']},{id:'void',name:'Void Sanctum',tier:3,diff:'Veteran',entry:35,min:800,max:2400,color:'#6B2FA0',logs:['🗺️ Entering Void Sanctum — Tier 3...','🤖 AI Dungeon Master analyzing hero profile...','👁️ Enemy intelligence adapting to your playstyle...','⚔️ Void Mage appears! Spell ATK +18','🎯 Critical hit! 8d10 force damage!','💀 Void Mage slain — 35 $FLG entry BURNED 🔥','💎 Rare loot chest discovered!','✨ Dungeon cleared! Rewards distributed.']},{id:'abyss',name:'Abyssal Breach',tier:4,diff:'Legendary',entry:80,min:3000,max:12000,color:'#1A8A6B',logs:['🗺️ Entering Abyssal Breach — Tier 4...','🤖 AI DM: Legendary difficulty detected...','⚠️ Warning: Permadeath risk active!','⚔️ Abyssal Guardian appears! HP: 4,800 · AC: 22','🔮 Rift Explosion — 20d10 void damage!','🎯 CRITICAL! Guardian takes 187 void damage!','💀 Guardian defeated — BURN: 525 $FLG 🔥','👑 LEGENDARY CLEAR! Maximum rewards!','✨ 80 $FLG burned. Rewards incoming.']}];
+const TIERS=[{name:'Guardian',lock:'Flexible',mult:1.0,color:'#8A7AAA'},{name:'Fortress',lock:'90 days',mult:1.6,color:'#7B2FBE'},{name:'Voidwarden',lock:'365 days',mult:2.5,color:'#C9A22A'}];
+const ALLOC=[{l:'Liquidity Pools',p:40,c:'#7B2FBE',lock:true},{l:'Staking & Farming',p:25,c:'#C9A22A',lock:false},{l:'Team (4yr vest)',p:15,c:'#C0392B',lock:true},{l:'DAO Treasury',p:10,c:'#1A9A6B',lock:false},{l:'Airdrops',p:10,c:'#2980B9',lock:false}];
+const SUPPLY=[{m:0,b:21,a:21,u:21},{m:6,b:25.85,a:24.45,u:21.65},{m:12,b:30.7,a:27.9,u:22.3},{m:18,b:35.55,a:31.35,u:22.95},{m:24,b:40.4,a:34.8,u:23.6},{m:30,b:37.65,a:29.3,u:12.6},{m:36,b:34.9,a:23.8,u:1.6}];
+let selClass=CLASSES[0],selDungeon=null,mintedHero=null,stakeHero=false,dungeonRunning=false;
+let flg=parseInt(localStorage.getItem('fl_flg')||'2500');let selTier=2;
+function saveFLG(v){flg=v;try{localStorage.setItem('fl_flg',String(v));}catch{}}
+function buildClassGrid(){const g=document.getElementById('classGrid');g.innerHTML=CLASSES.map(c=>`<div class="class-card ${c.id===selClass.id?'selected':''}" id="cls-${c.id}" style="background:${c.id===selClass.id?c.color+'22':'#0f0f1a'};border-color:${c.id===selClass.id?c.color:'#2a2a3a'};" onclick="selectClass('${c.id}')"><div class="class-icon">${c.icon}</div><div class="class-name" style="color:${c.id===selClass.id?c.color:'#ccc'}">${c.name}</div><div class="class-role">${c.role}</div></div>`).join('');}
+function selectClass(id){selClass=CLASSES.find(c=>c.id===id);buildClassGrid();buildHeroStats();buildMintArea();}
+function buildHeroStats(){const h=document.getElementById('heroStats');h.innerHTML=`<div style="display:flex;justify-content:space-between;margin-bottom:12px;"><div><div style="font-size:16px;font-family:'Cinzel',serif;font-weight:700;color:${selClass.color}">${selClass.icon} ${selClass.name}</div><div style="font-size:10px;color:var(--muted);font-family:monospace;margin-top:2px">${selClass.role}</div></div><span style="display:inline-block;background:${selClass.color}22;border:1px solid ${selClass.color}55;color:${selClass.color};border-radius:20px;padding:3px 10px;font-size:10px;font-family:monospace;align-self:flex-start">Lv60</span></div><p style="font-size:13px;color:#9a8aaa;font-family:'Crimson Text',serif;margin-bottom:12px;line-height:1.5">${selClass.lore}</p>${Object.entries(selClass.stats).map(([s,v])=>`<div class="stat-bar-wrap"><div class="stat-bar-label"><span>${s}</span><span style="color:${selClass.color}">${v}</span></div><div class="stat-bar-bg"><div class="stat-bar-fill" style="width:${v}%;background:linear-gradient(90deg,${selClass.color}88,${selClass.color})"></div></div></div>`).join('')}<div style="margin-top:12px;padding:10px 12px;background:${selClass.color}11;border:1px solid ${selClass.color}33;border-radius:6px;"><div style="font-size:10px;color:${selClass.color};letter-spacing:.15em;font-family:monospace">ULTIMATE</div><div style="font-size:13px;color:#e0d0ff;font-family:'Cinzel',serif;font-weight:600;margin-top:3px">${selClass.ability}</div><div style="font-size:11px;color:var(--muted);margin-top:2px;font-family:'Crimson Text',serif">${selClass.desc}</div></div>`;}
+function buildMintArea(){const a=document.getElementById('mintArea');const minted=mintedHero&&mintedHero.id===selClass.id;const canMint=flg>=selClass.cost&&!minted;a.innerHTML=`<div style="display:flex;gap:10px;align-items:center"><button onclick="doMint()" style="flex:1;padding:12px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;border-radius:8px;cursor:${canMint?'pointer':'not-allowed'};border:1px solid ${canMint?selClass.color:minted?'var(--green)':'#333'};background:${canMint?selClass.color+'22':minted?'rgba(26,154,107,.2)':'#1a1a2a'};color:${canMint?selClass.color:minted?'var(--green)':'#555'};transition:all .2s;">${minted?'✓ HERO MINTED':`MINT · ${selClass.cost} $FLG`}</button>${mintedHero?`<div style="font-size:10px;color:var(--red);font-family:monospace;text-align:center"><div>BURNED</div><div>${mintedHero.cost||selClass.cost} $FLG</div></div>`:''}</div>`;}
+function doMint(){if(flg<selClass.cost||mintedHero?.id===selClass.id)return;saveFLG(flg-selClass.cost);mintedHero={id:selClass.id,name:selClass.name,cost:selClass.cost,icon:selClass.icon};stakeHero=true;buildMintArea();buildEnterBtn();hudVals.heroes++;}
+function buildDungeons(){document.getElementById('dungeonList').innerHTML=DUNGEONS.map(d=>`<div class="dungeon-card" id="dng-${d.id}" onclick="selectDungeon('${d.id}')" style="background:${selDungeon?.id===d.id?d.color+'18':'#0a0a12'};border-color:${selDungeon?.id===d.id?d.color:'var(--border)'}"><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><div class="dungeon-name" style="color:${selDungeon?.id===d.id?d.color:'#ccc'}">${d.name}</div><span style="background:${d.color}22;border:1px solid ${d.color}55;color:${d.color};border-radius:20px;padding:2px 9px;font-size:10px;font-family:monospace">TIER ${d.tier}</span></div><div class="dungeon-meta"><span>Difficulty: <span style="color:#aaa">${d.diff}</span></span><span>Entry: <span style="color:var(--red)">${d.entry>0?d.entry+' $FLG 🔥':'Free'}</span></span></div><div style="font-size:11px;color:var(--muted);margin-top:4px;font-family:'Crimson Text',serif">Reward: <span style="color:var(--gold)">${d.min.toLocaleString()}–${d.max.toLocaleString()} $FLG</span></div></div>`).join('');}
+function selectDungeon(id){selDungeon=DUNGEONS.find(d=>d.id===id);buildDungeons();buildEnterBtn();}
+function buildEnterBtn(){const btn=document.getElementById('enterBtn');const dis=!mintedHero||!selDungeon||dungeonRunning;const label=dungeonRunning?'⚔ RUNNING DUNGEON…':!mintedHero?'MINT A HERO FIRST':!selDungeon?'SELECT A DUNGEON':`⚔ ENTER ${selDungeon.name.toUpperCase()}`;btn.textContent=label;btn.style.background=dis?'#1a1a2a':'linear-gradient(135deg,var(--purple),#4a1280)';btn.style.color=dis?'#555':'#fff';btn.style.border=`1px solid ${dis?'#333':'var(--purple)'}`;btn.style.cursor=dis?'not-allowed':'pointer';btn.style.boxShadow=dis?'none':'0 0 20px rgba(123,47,190,.4)';}
+function enterDungeon(){if(!mintedHero||!selDungeon||dungeonRunning)return;if(flg<selDungeon.entry)return;if(selDungeon.entry>0){saveFLG(flg-selDungeon.entry);hudVals.burned+=selDungeon.entry;}dungeonRunning=true;buildEnterBtn();const box=document.getElementById('logBox');box.innerHTML='';selDungeon.logs.forEach((log,i)=>{setTimeout(()=>{const line=document.createElement('div');line.className='log-line';line.innerHTML=`<span style="color:#333;margin-right:8px">[${String(i).padStart(2,'0')}]</span>${log}`;box.appendChild(line);box.scrollTop=box.scrollHeight;if(i===selDungeon.logs.length-1){const reward=Math.floor(Math.random()*(selDungeon.max-selDungeon.min+1))+selDungeon.min;setTimeout(()=>{saveFLG(flg+reward);hudVals.dungeons++;const res=document.createElement('div');res.className='log-result';res.innerHTML=`<div style="color:var(--green);font-size:13px;font-family:'Cinzel',serif;font-weight:700">✨ REWARDS DISTRIBUTED ON-CHAIN</div><div style="color:var(--gold);margin-top:4px">+${reward.toLocaleString()} $FLG added to balance</div>`;box.appendChild(res);box.scrollTop=box.scrollHeight;dungeonRunning=false;buildEnterBtn();},600);}},i*620);});}
+function buildTierBtns(){document.getElementById('tierBtns').innerHTML=TIERS.map((t,i)=>`<button onclick="selTier=${i};buildTierBtns();calcStake();" style="flex:1;padding:7px 4px;background:${i===selTier?t.color+'22':'#0a0a15'};border:1px solid ${i===selTier?t.color:'var(--border)'};border-radius:4px;cursor:pointer;color:${i===selTier?t.color:'var(--muted)'};font-size:11px;font-family:monospace;letter-spacing:.05em;">${t.name}</button>`).join('');}
+function calcStake(){const amt=parseFloat(document.getElementById('stakeAmount').value)||0;const price=parseFloat(document.getElementById('stakePrice').value)||0;const t=TIERS[selTier];const apy=24*t.mult;const yFLG=amt*(apy/100);const mFLG=yFLG/12;const yUSD=yFLG*price;document.getElementById('tierInfo').textContent=`Lock: ${t.lock} · Multiplier: ${t.mult}× · APY: ${apy.toFixed(1)}%`;document.getElementById('stakeResults').innerHTML=`<div style="background:rgba(201,162,42,.08);border:1px solid rgba(201,162,42,.3);border-radius:6px;padding:10px;text-align:center"><div style="font-size:15px;color:var(--gold);font-family:'Cinzel',serif;font-weight:700">${Math.round(mFLG).toLocaleString()}</div><div style="font-size:9px;color:var(--muted);font-family:monospace;margin-top:3px">MONTHLY $FLG</div></div><div style="background:rgba(123,47,190,.08);border:1px solid rgba(123,47,190,.3);border-radius:6px;padding:10px;text-align:center"><div style="font-size:15px;color:var(--purple);font-family:'Cinzel',serif;font-weight:700">${Math.round(yFLG).toLocaleString()}</div><div style="font-size:9px;color:var(--muted);font-family:monospace;margin-top:3px">YEARLY $FLG</div></div><div style="background:rgba(26,154,107,.08);border:1px solid rgba(26,154,107,.3);border-radius:6px;padding:10px;text-align:center"><div style="font-size:15px;color:var(--green);font-family:'Cinzel',serif;font-weight:700">$${yUSD.toFixed(2)}</div><div style="font-size:9px;color:var(--muted);font-family:monospace;margin-top:3px">YEARLY USD</div></div>`;document.getElementById('tierDetails').innerHTML=TIERS.map((t2,i)=>`<div style="padding:14px 0;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:center"><div style="width:7px;height:7px;border-radius:50%;background:${t2.color};flex-shrink:0"></div><div style="flex:1"><div style="font-size:14px;font-family:'Cinzel',serif;color:${t2.color};font-weight:700">${t2.name} Stake</div><div style="font-size:12px;color:var(--muted);font-family:'Crimson Text',serif;margin-top:2px">${t2.lock} lock</div></div><div style="text-align:right"><div style="font-size:15px;color:${t2.color};font-family:'Cinzel',serif;font-weight:700">${t2.mult}×</div><div style="font-size:9px;color:var(--muted);font-family:monospace">MULT</div></div></div>`).join('');}
+function buildAllocList(){document.getElementById('allocList').innerHTML=ALLOC.map(a=>`<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><div style="width:10px;height:10px;border-radius:2px;background:${a.c};flex-shrink:0"></div><div style="flex:1;font-size:14px;color:#C0B0DC;font-family:'Crimson Text',serif">${a.l}${a.lock?'<div style="font-family:monospace;font-size:9px;color:var(--red)">🔒 LOCKED</div>':''}</div><div style="font-size:16px;color:${a.c};font-family:\'Cinzel\',serif;font-weight:700">${a.p}%</div></div>`).join('');}
+function buildSupplyChart(){const svg=document.getElementById('supplyChart');const W=500,H=180,pad={t:10,r:20,b:38,l:42};const cw=W-pad.l-pad.r,ch=H-pad.t-pad.b,maxV=45;const xS=i=>pad.l+(i/(SUPPLY.length-1))*cw;const yS=v=>pad.t+ch-(v/maxV)*ch;const path=key=>SUPPLY.map((d,i)=>`${i===0?'M':'L'}${xS(i)},${yS(d[key])}`).join(' ');svg.innerHTML=[0,10,20,30,40].map(v=>`<line x1="${pad.l}" y1="${yS(v)}" x2="${W-pad.r}" y2="${yS(v)}" stroke="#ffffff08" stroke-width="1"/><text x="${pad.l-5}" y="${yS(v)+4}" text-anchor="end" font-size="9" fill="#555" font-family="monospace">${v}M</text>`).join('')+SUPPLY.map((d,i)=>`<text x="${xS(i)}" y="${H-8}" text-anchor="middle" font-size="9" fill="#555" font-family="monospace">${d.m}mo</text>`).join('')+`<path d="${path('b')}" fill="none" stroke="#C0392B88" stroke-width="1.5" stroke-dasharray="4,3"/><path d="${path('a')}" fill="none" stroke="#C9A22A" stroke-width="2.5"/><path d="${path('u')}" fill="none" stroke="#1A9A6B" stroke-width="2"/><line x1="${xS(3)}" y1="${pad.t}" x2="${xS(3)}" y2="${H-pad.b}" stroke="#ffffff12" stroke-width="1" stroke-dasharray="3,3"/><text x="${xS(3)+4}" y="${pad.t+12}" font-size="8" fill="#C9A22A88" font-family="monospace">Deflation</text><text x="${W-pad.r-80}" y="${pad.t+10}" font-size="9" fill="#C0392B88" font-family="monospace">Bear</text><text x="${W-pad.r-80}" y="${pad.t+22}" font-size="9" fill="#C9A22A" font-family="monospace">Base</text><text x="${W-pad.r-80}" y="${pad.t+34}" font-size="9" fill="#1A9A6B" font-family="monospace">Bull</text>`;}
+function switchTab(id){['combat','staking','tokenomics'].forEach(t=>{document.getElementById('tab-'+t).style.display=t===id?'block':'none';});document.querySelectorAll('.demo-tab').forEach((btn,i)=>{btn.classList.toggle('active',['combat','staking','tokenomics'][i]===id);});}
+buildClassGrid();buildHeroStats();buildMintArea();buildDungeons();buildEnterBtn();buildTierBtns();calcStake();buildAllocList();buildSupplyChart();
+
+// ── ECONOMY HUD COUNTER ──
+var hudVals={burned:42183,heroes:1204,dungeons:8991};
+window.addEventListener(‘load’,function(){
+var ids={burned:‘hud-burned’,heroes:‘hud-heroes’,dungeons:‘hud-dungeons’};
+var duration=2400,steps=80,interval=duration/steps;
+Object.keys(hudVals).forEach(function(key){
+var current=0;
+var target=hudVals[key];
+var step=target/steps;
+var el=document.getElementById(ids[key]);
+if(!el)return;
+var timer=setInterval(function(){
+current=Math.min(current+step,target);
+el.textContent=Math.floor(current).toLocaleString();
+if(current>=target)clearInterval(timer);
+},interval);
+});
+setInterval(function(){
+hudVals.burned+=Math.floor(Math.random()*12+3);
+hudVals.heroes+=Math.random()>.92?1:0;
+hudVals.dungeons+=Math.random()>.85?1:0;
+var b=document.getElementById(‘hud-burned’);
+var h=document.getElementById(‘hud-heroes’);
+var d=document.getElementById(‘hud-dungeons’);
+if(b)b.textContent=hudVals.burned.toLocaleString();
+if(h)h.textContent=hudVals.heroes.toLocaleString();
+if(d)d.textContent=hudVals.dungeons.toLocaleString();
+},3000);
+});
+</script>
+
+</body>
+</html>
